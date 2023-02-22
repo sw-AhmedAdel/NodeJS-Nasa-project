@@ -9,6 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Clear cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - uses: actions/checkout@v2
       - name: Use Node.js version 16
         uses: actions/setup-node@v2
