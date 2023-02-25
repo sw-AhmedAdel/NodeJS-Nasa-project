@@ -50,9 +50,6 @@ describe("Launches test", () => {
       const responseDate = new Date(response.body.launchDate).valueOf();
       expect(responseDate).toBe(requestDate);
 
-      console.log(response.body);
-      console.log("____________");
-      console.log(response._body);
       expect(response.body).toMatchObject(launchDataWithoutDate);
     });
 
@@ -75,7 +72,7 @@ describe("Launches test", () => {
         .expect("Content-Type", /json/)
         .expect(400);
 
-      expect(response.body).toStrictEqual({
+      expect(response._body).toStrictEqual({
         error: "Invalid launch date",
       });
     });
