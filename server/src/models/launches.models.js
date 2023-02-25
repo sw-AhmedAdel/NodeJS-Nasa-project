@@ -24,7 +24,7 @@ async function saveLaunch(launch) {
 
 async function addNewLaunch(launch) {
   const planet = await planets.findOne({
-    kepler_ame: launch.target,
+    kepler_name: launch.target,
   });
 
   if (!planet) {
