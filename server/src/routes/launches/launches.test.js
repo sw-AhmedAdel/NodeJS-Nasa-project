@@ -18,6 +18,7 @@ describe("Launches test", () => {
         .expect(200);
     });
   });
+
   describe("Test POST /launch", () => {
     const completeLaunchData = {
       mission: "USS Enterprise",
