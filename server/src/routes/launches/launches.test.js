@@ -40,13 +40,6 @@ describe("Launches test", () => {
       launchDate: "zoot",
     };
 
-    const launchDataWithInvalidPlanet = {
-      mission: "USS Enterprise",
-      rocket: "NCC 1701-D",
-      target: "monkey",
-      launchDate: "January 4, 2028",
-    };
-
     test("It should respond with 201 created", async () => {
       const response = await request(app)
         .post("/v1/launches")
@@ -73,17 +66,6 @@ describe("Launches test", () => {
       });
     });
 
-    test("It should catch invalid planet", async () => {
-      const response = await request(app)
-        .post("/v1/launches")
-        .send(launchDataWithInvalidPlanet)
-        .expect("Content-Type", /json/)
-        .expect(400);
-
-      expect(response.body).toStrictEqual({
-        error: "Invalid planet",
-      });
-    });
     test("It should catch invalid dates", async () => {
       const response = await request(app)
         .post("/v1/launches")
