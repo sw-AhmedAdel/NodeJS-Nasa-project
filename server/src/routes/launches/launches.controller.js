@@ -28,6 +28,13 @@ async function httpPostNewLaunch(req, res) {
     });
   }
 
+  const planet = await isPlanetValid(launch.target);
+  if (!planet) {
+    return res.status(400).json({
+      error: "Invalid planet",
+    });
+  }
+
   launch.launchDate = new Date(launch.launchDate);
   if (isNaN(launch.launchDate)) {
     return res.status(400).json({
