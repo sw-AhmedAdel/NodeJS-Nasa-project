@@ -3,7 +3,6 @@ const {
   addNewLaunch,
   isLaunchExits,
   abortlaunchByID,
-  isPlanetValid,
 } = require("../../models/launches.models");
 
 const { getPagination } = require("../../services/query");
@@ -31,7 +30,7 @@ async function httpPostNewLaunch(req, res) {
   launch.launchDate = new Date(launch.launchDate);
   if (isNaN(launch.launchDate)) {
     return res.status(400).json({
-      error: "Invalid launch date",
+      error: "invalid date",
     });
   }
   const newLaunch = await addNewLaunch(launch);

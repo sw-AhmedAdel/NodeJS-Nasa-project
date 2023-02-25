@@ -10,16 +10,6 @@ async function getLatestFlightNumber() {
   return latestLaunch.flightNumber;
 }
 
-async function isPlanetValid(target) {
-  const planet = await planets.findOne({
-    kepler_name: target,
-  });
-  if (!planet) {
-    return false;
-  }
-  return true;
-}
-
 async function saveLaunch(launch) {
   await LaunchesSchema.findOneAndUpdate(
     {
@@ -33,6 +23,13 @@ async function saveLaunch(launch) {
 }
 
 async function addNewLaunch(launch) {
+  const planet = await planets.findOne({
+    kepler_ame: launch.target,
+  });
+
+  if (!planet) {
+    throw new Error("No matching planet found");
+  }
   const newFlightNumber = (await getLatestFlightNumber()) + 1;
   const newLaunch = Object.assign(launch, {
     flightNumber: newFlightNumber,
@@ -81,6 +78,5 @@ module.exports = {
   getALlLaunches,
   addNewLaunch,
   isLaunchExits,
-  isPlanetValid,
   abortlaunchByID,
 };
