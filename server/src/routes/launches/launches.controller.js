@@ -24,7 +24,7 @@ async function httpPostNewLaunch(req, res) {
     !launch.rocket
   ) {
     return res.status(400).json({
-      error: "missing data",
+      error: "Missing required launch property",
     });
   }
 
@@ -38,7 +38,7 @@ async function httpPostNewLaunch(req, res) {
   launch.launchDate = new Date(launch.launchDate);
   if (isNaN(launch.launchDate)) {
     return res.status(400).json({
-      error: "invalid date",
+      error: "Invalid launch date",
     });
   }
   const newLaunch = await addNewLaunch(launch);
