@@ -12,9 +12,7 @@ app.use(
   })
 );
 app.use(express.json());
-
 app.use(express.static(path.join(__dirname, "..", "public"))); // here to make the project work in on server port which 8000
-
 //here to make the project work on the rote not makein /index.html like above
 app.use("/v1", api);
 app.use("/*", (req, res) => {
