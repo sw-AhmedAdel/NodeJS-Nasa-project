@@ -1,4 +1,4 @@
-const API_PATH = "http://localhost:8000/v1";
+const API_PATH = "v1";
 async function httpGetPlanets() {
   const response = await fetch(`${API_PATH}/planets`);
   return await response.json();
